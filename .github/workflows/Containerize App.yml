@@ -1,0 +1,22 @@
+name: Configure OIDC Authentication between AWS
+on:
+  push:
+    branches:
+      - main
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  OIDC:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ env.AWS_REGION }}
+          role-to-assume: ${{ secrets.AWS_OIDC_ROLE }}
+          role-session-name: GitHubActions
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
