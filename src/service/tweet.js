@@ -2,7 +2,7 @@ export default class TweetService {
   tweets = [
     {
       id: 1,
-      text: '안녕하세요!, 원승연 DevOps 엔지니어 입니다.',
+      text: '안녕하세요, 원승연 엔지니어 입니다.',
       createdAt: '2024-05-09T04:20:57.000Z',
       name: 'Mike',
       username: 'mike',
