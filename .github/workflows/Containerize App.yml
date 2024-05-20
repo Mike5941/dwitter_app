@@ -29,5 +29,5 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/dwitter:v0.1.0
+          tags: ${{ secrets.DOCKER_USERNAME }}/dwitter:v0.1.1
 
