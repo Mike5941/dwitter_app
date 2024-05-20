@@ -8,7 +8,7 @@ env:
   REGISTRY_IMAGE: wonsoong/dwitter
 
 jobs:
-  containerize:
+  build:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
