@@ -2,7 +2,7 @@
 replicaCount: 1
 image:
   # -- Default image repository
-  repository: quay.io/argoprojlabs/argocd-image-updater
+  repository: quay.io/argoprojlabs/terraform-image-updater
   # -- Default image pull policy
   pullPolicy: Always
   # -- Overrides the image tag whose default is the chart appVersion
@@ -13,14 +13,14 @@ updateStrategy:
   type: Recreate
 # -- ImagePullSecrets for the image updater deployment
 imagePullSecrets: []
-# -- Global name (argocd-image-updater.name in _helpers.tpl) override
+# -- Global name (terraform-image-updater.name in _helpers.tpl) override
 nameOverride: ""
-# -- Global fullname (argocd-image-updater.fullname in _helpers.tpl) override
+# -- Global fullname (terraform-image-updater.fullname in _helpers.tpl) override
 fullnameOverride: ""
-# -- Global namespace (argocd-image-updater.namespace in _helpers.tpl) override
+# -- Global namespace (terraform-image-updater.namespace in _helpers.tpl) override
 namespaceOverride: ""
 
-# -- Extra arguments for argocd-image-updater not defined in `config.argocd`.
+# -- Extra arguments for terraform-image-updater not defined in `config.terraform`.
 # If a flag contains both key and value, they need to be split to a new entry
 extraArgs: []
   # - --disable-kubernetes
@@ -39,30 +39,30 @@ extraArgs: []
   # - --registries-conf-path
   # - /app/config/registries.conf
 
-# -- Extra environment variables for argocd-image-updater
+# -- Extra environment variables for terraform-image-updater
 extraEnv: []
   # - name: AWS_REGION
   #   value: "us-west-1"
 
-# -- Extra envFrom to pass to argocd-image-updater
+# -- Extra envFrom to pass to terraform-image-updater
 extraEnvFrom: []
   # - configMapRef:
   #     name: config-map-name
   # - secretRef:
   #     name: secret-name
 
-# -- Extra K8s manifests to deploy for argocd-image-updater
+# -- Extra K8s manifests to deploy for terraform-image-updater
 ## Note: Supports use of custom Helm templates
 extraObjects: []
   # - apiVersion: secrets-store.csi.x-k8s.io/v1
   #   kind: SecretProviderClass
   #   metadata:
-  #     name: argocd-image-updater-secrets-store
+  #     name: terraform-image-updater-secrets-store
   #   spec:
   #     provider: aws
   #     parameters:
   #       objects: |
-  #         - objectName: "argocd-image-updater"
+  #         - objectName: "terraform-image-updater"
   #           objectType: "secretsmanager"
   #           jmesPath:
   #               - path: "client_id"
@@ -75,10 +75,10 @@ extraObjects: []
   #         objectName: client_id
   #       - key: client_secret
   #         objectName: client_secret
-  #       secretName: argocd-image-updater-secrets-store
+  #       secretName: terraform-image-updater-secrets-store
   #       type: Opaque
   #       labels:
-  #         app.kubernetes.io/part-of: argocd
+  #         app.kubernetes.io/part-of: terraform
 
 # -- Init containers to add to the image updater pod
 initContainers: []
@@ -104,11 +104,11 @@ volumes: []
   #    emptyDir: {}
 
 config:
-  # -- API kind that is used to manage Argo CD applications (`kubernetes` or `argocd`)
+  # -- API kind that is used to manage Argo CD applications (`kubernetes` or `terraform`)
   applicationsAPIKind: ""
 
   # Described in detail here https://argocd-image-updater.readthedocs.io/en/stable/install/running/#flags
-  # Note: this is only relevant if config.applicationsAPIKind == 'argocd'
+  # Note: this is only relevant if config.applicationsAPIKind == 'terraform'
   argocd:
     # -- Use the gRPC-web protocol to connect to the Argo CD API
     grpcWeb: true
